@@ -31,11 +31,14 @@ function getTasks(){
         method: 'GET',
         url: '/tasks'
     }).then((taskRes) => {
+        console.log(taskRes);
         renderTasks(taskRes);
+    }).catch((error) => {
+        console.log('Error in GET', error);
     });
 }
 
 
-function renderTasks(){
-    console.log('hi!');
+function renderTasks(response){
+    console.log(response);
 };
