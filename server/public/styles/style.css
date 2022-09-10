@@ -1,0 +1,58 @@
+body {
+    background-color: whitesmoke;
+    margin: 0;
+}
+
+header {
+    height: 120px;
+    width: 100% !important;
+    background: rgb(43, 63, 38);
+    color: white;
+    text-align: left;
+    vertical-align: -50px !important;
+    padding-top: 25px;
+    padding-left: 30px;
+}
+
+h1 {
+    color: whitesmoke;
+    font-size: 60px;
+    font-weight: 800;
+}
+
+#inputs {
+    background-color:whitesmoke;
+    border-radius: 10px;
+}
+
+.tableButton {
+    text-align: end;
+}
+
+/* #submitButton {
+    border-radius: 10px;
+} */
+
+#taskIn {
+    border-radius: 5px;
+}
+
+.form-check-input:checked:focus{
+    background-color: darkcyan !important;
+    box-shadow: 0 0 0 1px darkcyan, 0 0 0 0.2rem rgba(0, 255, 0, 0.25) !important;
+}
+
+.form-check-input:checked:active:focus{
+    background-color: darkcyan !important;
+    box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(0, 255, 0, 0.25) !important;
+
+}
+.form-check-input:checked:active{
+    background-color: darkcyan !important;
+    box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(0, 255, 0, 0.25) !important;
+
+}
+
+.form-check-input:checked{
+    background-color: darkcyan !important;
+}
