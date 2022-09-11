@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
     console.log ('GET recieved a request');
     let queryText = 
     `SELECT * FROM "tasks"
-        ORDER BY "checked";`;
+        ORDER BY "checked", "listItem";`;
     db.query(queryText).then(result =>{
         res.send(result.rows)
     })
