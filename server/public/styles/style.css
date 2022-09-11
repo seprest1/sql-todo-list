@@ -1,17 +1,20 @@
 body {
     background-color: whitesmoke;
     margin: 0;
+    width: 100%;
+    background-image: url(https://www.wallpaperboulevard.com/Images/product/sand-drips-green-painted-dots-wallpaper-wmnp.jpg);
 }
 
 header {
     height: 120px;
     width: 100% !important;
-    background: rgb(43, 63, 38);
+    background: rgb(66, 97, 58);
     color: white;
     text-align: left;
     vertical-align: -50px !important;
     padding-top: 25px;
     padding-left: 30px;
+    border-bottom: 3px solid rgb(52, 60, 54);
 }
 
 h1 {
@@ -22,47 +25,50 @@ h1 {
 
 #inputs {
     background-color:whitesmoke;
-    border-radius: 10px;
+    border-radius: 20px;
     text-align: left;
 }
 
-.tableButton {
-    text-align: end;
+td{ 
+    padding-top: 10px;
 }
 
-/* #submitButton {
-    border-radius: 10px;
-} */
-
-#taskIn {
-    border-radius: 5px;
-}
-
-tr:hover {
+.hoverTr:hover {
     background-color: lightgrey;
 }
 
-.done {
-    background-color: blue;
+#deleteButton{
+    justify-content: end !important;
 }
 
-/* .form-check-input:checked:focus{
-    background-color: darkcyan !important;
-    box-shadow: 0 0 0 1px darkcyan, 0 0 0 0.2rem rgba(0, 255, 0, 0.25) !important;
+.container {
+    display: grid;
+    width: 40%;
+    height: 33rem;
+    margin: 2rem 29vw;
+    padding: 20px;
+    grid-template-areas: "checkButton taskItem deleteButton";
+    border: 1px solid black;
+    background-color: whitesmoke;
+    overflow-x: scroll;
 }
 
-.form-check-input:checked:active:focus{
-    background-color: darkcyan !important;
-    box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(0, 255, 0, 0.25) !important;
-
-}
-.form-check-input:checked:active{
-    background-color: darkcyan !important;
-    box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(0, 255, 0, 0.25) !important;
-
+.checkButton{
+    margin: 0px 30px;
 }
 
-.form-check-input:checked{
-    background-color: darkcyan !important;
-} */
+#deleteButton{
+    margin-left: 150px;
+}
 
+#taskCategory{
+    text-align: center;
+}
+
+#inputs {
+    background-color: transparent;
+}
+
+#submitButton {
+    background-color: rgba(103, 178, 84, 0.5) !important;
+}
