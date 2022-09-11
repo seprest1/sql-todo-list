@@ -5,6 +5,8 @@ CREATE TABLE "tasks" (
 	"timeCompleted" VARCHAR (20)
 );
 
+	-- "timeCompleted" column created in case future feature added.
+
 INSERT INTO "tasks" ("listItem")
 	VALUES
 	('Finish homework.'),

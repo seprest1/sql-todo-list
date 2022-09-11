@@ -3,7 +3,6 @@ const router = express.Router();
 
 const db = require('../modules/pool');
 
-
 router.get('/', (req, res) => {
     console.log ('GET recieved a request');
     let queryText = 
@@ -16,19 +15,20 @@ router.get('/', (req, res) => {
         console.log('error getting tasks', error);
         res.sendStatus(500);
     });
-});
+});     //sorted first by if task is checked, then alphabetically by item
 
 router.post('/', (req, res) => {
     console.log(req.body);
     const listItem = req.body.listItem;
     const checked = req.body.checked;
     const timeCompleted = req.body.timeCompleted;
+        //task components
 
     const queryText = `
     INSERT INTO "tasks"
     ("listItem", "checked", "timeCompleted")
-    VALUES
-    ($1, $2, $3);
+        VALUES
+        ($1, $2, $3);
     `;
 
     const sqlValues = [listItem, checked, timeCompleted];
@@ -41,18 +41,20 @@ router.post('/', (req, res) => {
         console.log('error adding tasks', error);
         res.sendStatus(500);
     })
-});
+});     //"timeCompleted" inserted for creating future feature
 
 router.put('/:id', (req, res) => {
     console.log('PUT received a request!');
     console.log(req.params);
     const taskId = req.params.id;
+        //id of specific data row, using new concept of params
 
     const sqlQuery = `
     UPDATE "tasks"
       SET "checked" = 'true'
       WHERE "id" = $1;
     `;
+        //update checked column to true or yes, it's checked!
 
     const sqlValues = [taskId];
 
@@ -68,6 +70,7 @@ router.put('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
     console.log(req.params);
     const taskId = req.params.id;
+        //specific data row using new concept of params
 
     const sqlQuery = 
     `DELETE FROM "tasks"
@@ -83,6 +86,5 @@ router.delete('/:id', (req, res) => {
             console.log('Something broke in DELETE /tasks', dbErr);
         });
 });
-
 
 module.exports = router;
