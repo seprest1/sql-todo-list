@@ -36,13 +36,20 @@ function editCategory(){
 };
 
 function taskComplete(){
-
+    let taskToCheck = $(this).closest('tr').data('id');
+    console.log(taskToCheck);
+    $.ajax({
+        method: 'PUT',
+        url: `/tasks/${taskToCheck}`
+    }).then((response) => {
+        $(this).val('on');
+        console.log($(this).next('td'));
+        getTasks();
+    }).catch ((error) => {
+        console.log('Error in task PUT', error);
+    })
 };
-
-function deleteTask(){
-
-};
-
+ 
 function getTasks(){
     console.log('you clicked me!');
     $.ajax({
@@ -55,26 +62,34 @@ function getTasks(){
     });
 }
 
-
 function renderTasks(response){
     $('#tableBody').empty();
     for (let task of response){
         $('#tableBody').append(`
-            <tr class="row">
-                <td class="col-11 col-sm-6">${task.listItem}</td>
-                <div class="col-1">
-                    <div class="row">
-                        <td class="col" class="tableButton">
-                            <input type="checkbox" class="form-check-input-lg" class="checkButton"/>
-                        </td>
-                        <td class="col" class="tableButton">
-                            <button type="button" class="btn-close btn-sm" class="deleteButton"></button>
-                        </td>
-                    </div>
-                </div>
+            <tr data-id="${task.id}">
+                <td>
+                    <input type="checkbox" value="" class="checkButton"/>
+                </td>
+                <td data-tf="${task.checked}">${task.listItem}</td>
+                <td>
+                    <button class="deleteButton">X</button>
+                </td>
             </tr>
         `);
     }
 };
 
+function deleteTask(){
+    let taskToDelete = $(this).closest('tr').data('id');
+    console.log(taskToDelete);
+    $.ajax({
+        method: 'DELETE',
+        url: `/tasks/${taskToDelete}`
+    }).then((response) => {
+        console.log('It worked!');
+        getTasks();
+    }).catch ((error) => {
+        console.log('Error in task DELETE', error);
+    })
+};
 

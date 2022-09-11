@@ -23,6 +23,7 @@ h1 {
 #inputs {
     background-color:whitesmoke;
     border-radius: 10px;
+    text-align: left;
 }
 
 .tableButton {
@@ -39,6 +40,10 @@ h1 {
 
 tr:hover {
     background-color: lightgrey;
+}
+
+.done {
+    background-color: blue;
 }
 
 /* .form-check-input:checked:focus{
