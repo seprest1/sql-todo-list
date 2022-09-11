@@ -24,4 +24,8 @@ An additional feature I decided to take on, with our instructor's suggestion, to
 
 ## Images
 
+<img width="1372" alt="Screen Shot 2022-09-11 at 2 22 11 PM" src="https://user-images.githubusercontent.com/105940054/189546727-d7e62888-8bbc-4148-8797-750c1c46ae0d.png">
+
+<img width="1369" alt="Screen Shot 2022-09-11 at 2 57 34 PM" src="https://user-images.githubusercontent.com/105940054/189546766-071ab557-5e72-4ad2-bd3b-0072204208a7.png">
+
 
