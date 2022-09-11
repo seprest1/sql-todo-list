@@ -9,58 +9,22 @@ function clickHandlers(){
     getTasks();
 };
 
-function addTask(){
-    let listObject = {
-        listItem: $('#taskIn').val(),
-        checked: false,
-        timeCompleted: null
-    }
-    console.log(listObject);
-    $.ajax({
-        method: 'POST',
-        url: '/tasks',
-        data: listObject
-    }).then((response) => {
-        console.log(response);
-        getTasks();
-        $('#taskIn').val('');
-    }).catch((error) => {
-        console.log('Error in task post', error);
-        alert('Error adding task.  Please try again!');
-    });
-};
-
-
-
-function taskComplete(){
-    let taskToCheck = $(this).closest('tr').data('id');
-    console.log(taskToCheck);
-    $.ajax({
-        method: 'PUT',
-        url: `/tasks/${taskToCheck}`
-    }).then((response) => {
-        getTasks();
-    }).catch ((error) => {
-        console.log('Error in task PUT', error);
-    })
-};
- 
 function getTasks(){
     console.log('you clicked me!');
     $.ajax({
         method: 'GET',
         url: '/tasks'
     }).then((response) => {
-        renderTasks(response);
+        renderTasks(response);                          //update DOM
     }).catch((error) => {
         console.log('Error in GET', error);
     });
 }
 
 function renderTasks(response){
-    $('#listItems').empty();
-    for (let task of response){
-        if (task.checked === true){
+    $('#listItems').empty();        //empty tasks
+    for (let task of response){         
+        if (task.checked === true){       //if tasked is checked, update DOM like this--->
             $('#listItems').append(`
             <tr data-id="${task.id}" class="hoverTr">
                 <td>
@@ -74,7 +38,7 @@ function renderTasks(response){
             `);
             $('.checkedListItem').css('text-decoration', 'line-through');
         }
-        else {
+        else {            //if tasked is still unchecked, update DOM like this --->             
             $('#listItems').append(`
             <tr data-id="${task.id}" class="hoverTr">
                 <td>
@@ -90,41 +54,74 @@ function renderTasks(response){
     }
 };
 
-
-function deleteTask(taskToDelete){
+function addTask(){                 
+    let listObject = {                                   //data object
+        listItem: $('#taskIn').val(),
+        checked: false,
+        timeCompleted: null
+    }                                      
+    console.log(listObject);
     $.ajax({
-        method: 'DELETE',
-        url: `/tasks/${taskToDelete}`
+        method: 'POST',
+        url: '/tasks',
+        data: listObject
     }).then((response) => {
-        console.log('It worked!');
-        getTasks();
+        console.log(response);
+        getTasks();                                     //update DOM
+        $('#taskIn').val('');                           //reset input to placeholder
+    }).catch((error) => {
+        console.log('Error in task post', error);
+        alert('Error adding task.  Please try again!');
+    });
+};
+
+function taskComplete(){
+    let taskToCheck = $(this).closest('tr').data('id');         //sets variable to row ID
+    $.ajax({
+        method: 'PUT',
+        url: `/tasks/${taskToCheck}`             //sets url to row ID               
+    }).then((response) => {
+        getTasks();                             //updateDOM
     }).catch ((error) => {
-        console.log('Error in task DELETE', error);
+        console.log('Error in task PUT', error);
     })
 };
 
 function deleteAlert(){
-    let taskToDelete = $(this).closest('tr').data('id');
+    let taskToDelete = $(this).closest('tr').data('id');        //set variable to row ID
     console.log(taskToDelete);
 
-    swal({
+    swal({                                                              //alert message
         title: "Are you sure?",
         text: "Once deleted, it will be removed permanently!",
         icon: "warning",
         buttons: true,
         dangerMode: true,
     })
-    .then((willDelete) => {
-        if (willDelete) {
+    .then((willDelete) => {     
+        if (willDelete) {                                           //if user clicks continue
             swal("Poof! The task has been deleted!", {
             icon: "success",});
-            deleteTask(taskToDelete);
+            deleteTask(taskToDelete);                             //send to DELETE route, ID as parameter
         } 
         else {
-            swal("Your task is safe!");
+            swal("Your task is safe!");                 //else, go back to list
         }
     });
 };
+
+function deleteTask(taskToDelete){                          //uses row ID as parameter
+    $.ajax({
+        method: 'DELETE',
+        url: `/tasks/${taskToDelete}`                       //sets row ID as url
+    }).then((response) => {
+        console.log('It worked!');
+        getTasks();                                         //update DOM
+    }).catch ((error) => {
+        console.log('Error in task DELETE', error);
+    })
+};
+
 
 
 
@@ -132,6 +129,9 @@ function deleteAlert(){
 
 
 //////////////////////////////////////////////////WIP///////////////////////////////////////////////////////////
+//          FUNCTIONS FOR USER TO BE ABLE TO EDIT LIST TITLE
+//
+//
 // $(document).on('click', '#editButton', editCategory);
 //
 // function editCategory(){

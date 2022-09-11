@@ -1,4 +1,5 @@
 const pg = require('pg');
+    //postgres
 const config = {
   database: 'weekend-to-do-app',
   host: 'localhost',
